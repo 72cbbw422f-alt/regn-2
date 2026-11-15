@@ -10,6 +10,7 @@ struct SMHIWarning: Identifiable {
     let description: String
     let start: Date?
     let end: Date?
+    let isUpcoming: Bool
     let distanceKm: Double
 }
 
@@ -85,20 +86,34 @@ final class SMHIWarningService: ObservableObject {
                     let details = (area["descriptions"] as? [[String: Any]])?
                         .first(where: { (($0["title"] as? [String: Any])?["code"] as? String) == "INCIDENT" })
                     let description = (details?["text"] as? [String: Any])?["sv"] as? String ?? event
-                    let areaId = String(describing: area["id"] ?? UUID().uuidString)
-                    return SMHIWarning(id: "\(record["id"] ?? areaId)-\(areaId)",
+                    let recordId = String(describing: record["id"] ?? eventCode)
+                    let areaId = String(describing: area["id"] ?? "\(areaName)-\(start?.ISO8601Format() ?? "utan-start")")
+                    return SMHIWarning(id: "\(recordId)-\(areaId)",
                                        event: event, areaName: displayAreaName, level: level,
                                        description: description, start: start, end: end,
+                                       isUpcoming: start.map { $0 > now } ?? false,
                                        distanceKm: distance)
                 }
             }
             warnings = found.sorted {
-                Self.levelRank($0.level) == Self.levelRank($1.level)
-                    ? $0.distanceKm < $1.distanceKm
-                    : Self.levelRank($0.level) > Self.levelRank($1.level)
+                if $0.isUpcoming != $1.isUpcoming { return !$0.isUpcoming }
+                if Self.levelRank($0.level) != Self.levelRank($1.level) {
+                    return Self.levelRank($0.level) > Self.levelRank($1.level)
+                }
+                return $0.distanceKm < $1.distanceKm
             }
             lastUpdated = now
-            status = warnings.isEmpty ? "Inga aktiva SMHI-varningar i ditt område" : "\(warnings.count) aktiva SMHI-varningar nära dig"
+            let activeCount = warnings.filter { !$0.isUpcoming }.count
+            let upcomingCount = warnings.filter(\.isUpcoming).count
+            if activeCount == 0 && upcomingCount == 0 {
+                status = "Inga aktiva SMHI-varningar i ditt område"
+            } else if activeCount == 0 {
+                status = "\(upcomingCount) kommande SMHI-varningar nära dig"
+            } else if upcomingCount == 0 {
+                status = "\(activeCount) aktiva SMHI-varningar nära dig"
+            } else {
+                status = "\(activeCount) aktiva · \(upcomingCount) kommande SMHI-varningar nära dig"
+            }
         } catch {
             status = "Kunde inte hämta SMHI-data – behåller senaste lyckade resultat"
         }
