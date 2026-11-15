@@ -155,16 +155,18 @@ final class SMHIWarningService: ObservableObject {
         let point = CLLocation(latitude: latitude, longitude: longitude)
         var minimum = Double.infinity
         for polygon in polygons {
-            guard let outer = polygon.first, outer.count >= 3 else { continue }
+            // Ignore malformed GeoJSON rings instead of indexing incomplete coordinates.
+            let validRings = polygon.compactMap(validatedRing)
+            guard let outer = validRings.first, outer.count >= 4 else { continue }
             let insideOuter = pointInRing(latitude: latitude, longitude: longitude, ring: outer)
-            let insideHole = polygon.dropFirst().contains {
+            let insideHole = validRings.dropFirst().contains {
                 pointInRing(latitude: latitude, longitude: longitude, ring: $0)
             }
             // A point inside a GeoJSON interior ring is outside the warning polygon.
             if insideOuter && !insideHole {
                 return 0
             }
-            for ring in polygon where ring.count >= 2 {
+            for ring in validRings where ring.count >= 2 {
                 for index in 0..<(ring.count - 1) {
                     let a = CLLocation(latitude: ring[index][1], longitude: ring[index][0])
                     let b = CLLocation(latitude: ring[index + 1][1], longitude: ring[index + 1][0])
@@ -173,6 +175,17 @@ final class SMHIWarningService: ObservableObject {
             }
         }
         return minimum / 1000
+    }
+
+    private static func validatedRing(_ coordinates: [[Double]]) -> [[Double]]? {
+        guard coordinates.count >= 4,
+              coordinates.allSatisfy({ coordinate in
+                  coordinate.count >= 2 &&
+                  coordinate[0].isFinite && coordinate[1].isFinite &&
+                  (-180...180).contains(coordinate[0]) &&
+                  (-90...90).contains(coordinate[1])
+              }) else { return nil }
+        return coordinates.map { [$0[0], $0[1]] }
     }
 
     private static func pointInRing(latitude: Double, longitude: Double, ring: [[Double]]) -> Bool {
