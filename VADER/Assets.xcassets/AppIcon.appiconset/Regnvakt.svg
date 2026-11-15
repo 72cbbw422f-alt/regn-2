@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<defs>
+ <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06213e"/><stop offset=".48" stop-color="#075080"/><stop offset="1" stop-color="#020d20"/></linearGradient>
+ <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9fbff"/><stop offset=".35" stop-color="#00d9ff"/><stop offset=".7" stop-color="#0879c8"/><stop offset="1" stop-color="#7ef7ff"/></linearGradient>
+ <linearGradient id="shield" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18edff"/><stop offset=".5" stop-color="#0079c9"/><stop offset="1" stop-color="#63eaff"/></linearGradient>
+ <linearGradient id="canopy" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#fff"/><stop offset=".45" stop-color="#c8f1ff"/><stop offset="1" stop-color="#5bb8f4"/></linearGradient>
+ <linearGradient id="drop" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#eaffff"/><stop offset=".25" stop-color="#4ceaff"/><stop offset=".65" stop-color="#00a9f4"/><stop offset="1" stop-color="#004caa"/></linearGradient>
+ <radialGradient id="sun"><stop stop-color="#fffbd2"/><stop offset=".4" stop-color="#ffc04a"/><stop offset="1" stop-color="#ff7a23" stop-opacity="0"/></radialGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="28"/></filter>
+ <filter id="shadow"><feGaussianBlur stdDeviation="20"/></filter>
+ <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- deep blue glass tile -->
+<rect x="32" y="32" width="960" height="960" rx="205" fill="#000918"/>
+<rect x="44" y="44" width="936" height="936" rx="194" fill="url(#glass)" stroke="url(#edge)" stroke-width="13"/>
+<rect x="62" y="62" width="900" height="900" rx="176" fill="none" stroke="#b9f7ff" stroke-opacity=".18" stroke-width="3"/>
+<ellipse cx="805" cy="400" rx="260" ry="240" fill="url(#sun)" filter="url(#blur)"/>
+<!-- glowing sunset and layered storm clouds -->
+<circle cx="792" cy="355" r="125" fill="url(#sun)"/>
+<circle cx="792" cy="355" r="54" fill="#ffc15a" opacity=".82"/>
+<path d="M560 465c15-58 69-83 118-65 26-78 124-103 183-48 65-9 119 39 125 94 48 15 68 54 62 91H550c-22-24-18-52 10-72Z" fill="#193d61" opacity=".9"/>
+<path d="M598 505c34-54 92-59 132-36 34-64 117-72 166-29 64-7 111 33 125 83H600Z" fill="#477da1" opacity=".58"/>
+<path d="M624 570c47-50 105-46 143-14 40-53 113-45 146-7 47-2 85 24 102 62H622Z" fill="#153756" opacity=".92"/>
+<!-- glassy rain texture on left -->
+<g fill="none" stroke-linecap="round">
+ <path d="M137 190c-12 32-20 47-18 60 3 20 29 23 39 6 9-15-3-37-21-66Z" fill="#d8fbff" fill-opacity=".72" stroke="#8deeff" stroke-width="4"/>
+ <path d="M253 127c-9 22-15 34-13 44 2 15 22 18 30 4 7-12-2-27-17-48Z" fill="#d8fbff" fill-opacity=".55" stroke="#8deeff" stroke-width="3"/>
+ <path d="M337 204c-8 19-13 29-11 38 2 13 19 15 26 3 6-10-2-24-15-41Z" fill="#d8fbff" fill-opacity=".55" stroke="#8deeff" stroke-width="3"/>
+ <path d="M169 360c-10 23-16 35-14 46 2 16 23 19 32 4 7-12-2-29-18-50Z" fill="#d8fbff" fill-opacity=".45" stroke="#8deeff" stroke-width="3"/>
+ <path d="M112 518c-8 19-13 29-11 38 2 13 19 15 26 3 6-10-2-24-15-41Z" fill="#d8fbff" fill-opacity=".5" stroke="#8deeff" stroke-width="3"/>
+ <path d="M274 442c-10 23-16 35-14 46 2 16 23 19 32 4 7-12-2-29-18-50Z" fill="#d8fbff" fill-opacity=".48" stroke="#8deeff" stroke-width="3"/>
+ <path d="M196 640c-8 19-13 29-11 38 2 13 19 15 26 3 6-10-2-24-15-41Z" fill="#d8fbff" fill-opacity=".4" stroke="#8deeff" stroke-width="3"/>
+</g>
+<g fill="#baf5ff" opacity=".7">
+ <circle cx="206" cy="250" r="5"/><circle cx="298" cy="296" r="4"/><circle cx="126" cy="292" r="4"/><circle cx="235" cy="532" r="5"/><circle cx="321" cy="585" r="4"/><circle cx="144" cy="715" r="5"/><circle cx="278" cy="740" r="4"/><circle cx="354" cy="380" r="4"/>
+</g>
+<!-- central luminous shield -->
+<path d="M512 210 811 345v201c0 174-119 278-299 362-180-84-299-188-299-362V345Z" fill="#00152b" opacity=".7" filter="url(#shadow)" transform="translate(0 12)"/>
+<path d="M512 194 811 329v201c0 174-119 278-299 362-180-84-299-188-299-362V329Z" fill="#031d37" fill-opacity=".78" stroke="url(#shield)" stroke-width="18" stroke-linejoin="round" filter="url(#glow)"/>
+<path d="M512 222 783 345v183c0 154-105 250-271 330-166-80-271-176-271-330V345Z" fill="none" stroke="#a9f8ff" stroke-opacity=".35" stroke-width="5"/>
+<!-- three floating raindrops -->
+<g fill="url(#drop)" stroke="#b9faff" stroke-width="5" filter="url(#glow)">
+ <path d="M429 360c-20 35-34 52-34 70a35 35 0 1 0 70 0c0-18-15-38-36-70Z"/>
+ <path d="M512 305c-25 43-42 64-42 86a42 42 0 1 0 84 0c0-22-18-47-42-86Z"/>
+ <path d="M595 360c-20 35-34 52-34 70a35 35 0 1 0 70 0c0-18-15-38-36-70Z"/>
+</g>
+<!-- umbrella canopy and handle -->
+<path d="M512 454c-118 0-211 63-253 166 43-29 86-38 127-25 31-42 75-65 126-65s95 23 126 65c41-13 84-4 127 25-42-103-135-166-253-166Z" fill="url(#canopy)" stroke="#effdff" stroke-width="9" stroke-linejoin="round" filter="url(#glow)"/>
+<path d="M512 455v230c0 36-20 57-49 57-25 0-42-16-42-39" fill="none" stroke="#e9fbff" stroke-width="20" stroke-linecap="round"/>
+<path d="M512 465v215" stroke="#6bbce9" stroke-opacity=".6" stroke-width="5"/>
+<path d="M386 577c27-26 58-40 93-43M638 534c35 3 66 17 93 43" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="6" stroke-linecap="round"/>
+<!-- name wordmark -->
+<text x="512" y="850" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="111" font-style="italic" font-weight="700" letter-spacing="-4" fill="#ffffff" stroke="#d7f5ff" stroke-width="1.5" paint-order="stroke">Regnvakt</text>
+<path d="M260 895c155-78 352-82 505-10" fill="none" stroke="#00dfff" stroke-width="9" stroke-linecap="round" filter="url(#glow)"/>
+</svg>

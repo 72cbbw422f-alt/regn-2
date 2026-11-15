@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071a38"/><stop offset=".55" stop-color="#073b68"/><stop offset="1" stop-color="#031126"/></linearGradient>
+ <radialGradient id="halo"><stop stop-color="#10d9ff" stop-opacity=".34"/><stop offset="1" stop-color="#10d9ff" stop-opacity="0"/></radialGradient>
+ <linearGradient id="shield" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#75f4ff"/><stop offset=".5" stop-color="#00a9e8"/><stop offset="1" stop-color="#1464c8"/></linearGradient>
+ <linearGradient id="umbrella" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset=".45" stop-color="#b9edff"/><stop offset="1" stop-color="#49a9e9"/></linearGradient>
+ <linearGradient id="rain" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a8f7ff"/><stop offset="1" stop-color="#00a9ff"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="28"/></filter>
+ <filter id="shadow"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="1024" height="1024" rx="220" fill="url(#bg)"/>
+<circle cx="510" cy="450" r="430" fill="url(#halo)"/>
+<circle cx="765" cy="260" r="100" fill="#ffb943" opacity=".18" filter="url(#glow)"/>
+<circle cx="765" cy="260" r="61" fill="#ffcb58"/>
+<g stroke="#ffd16b" stroke-width="15" stroke-linecap="round" opacity=".95"><path d="M765 165v-34M860 260h34M697 192l-24-24M833 192l24-24"/></g>
+<path d="M512 111 825 240v245c0 170-127 267-313 347-186-80-313-177-313-347V240Z" fill="#00152c" opacity=".65" filter="url(#shadow)" transform="translate(0 18)"/>
+<path d="M512 97 825 226v245c0 170-127 267-313 347-186-80-313-177-313-347V226Z" fill="#061f3c" stroke="url(#shield)" stroke-width="22" stroke-linejoin="round"/>
+<path d="M512 140 785 252v215c0 144-107 227-273 300-166-73-273-156-273-300V252Z" fill="none" stroke="#8cefff" stroke-opacity=".28" stroke-width="5"/>
+<path d="M512 294c-119 0-217 70-257 174 42-31 87-43 129-36 31-49 76-77 128-77s97 28 128 77c42-7 87 5 129 36-40-104-138-174-257-174Z" fill="url(#umbrella)" stroke="#e6fbff" stroke-width="9" stroke-linejoin="round"/>
+<path d="M512 296v285c0 42-24 65-58 65-28 0-48-18-48-45" fill="none" stroke="url(#umbrella)" stroke-width="22" stroke-linecap="round"/>
+<path d="M383 430c-18 18-30 37-38 57M641 430c18 18 30 37 38 57" fill="none" stroke="#ffffff" stroke-opacity=".65" stroke-width="8" stroke-linecap="round"/>
+<g fill="url(#rain)" stroke="#a8f7ff" stroke-width="6"><path d="M360 656c0-26 38-78 38-78s38 52 38 78a38 38 0 1 1-76 0Z"/><path d="M474 700c0-26 38-78 38-78s38 52 38 78a38 38 0 1 1-76 0Z"/><path d="M588 656c0-26 38-78 38-78s38 52 38 78a38 38 0 1 1-76 0Z"/></g>
+<path d="M290 840c65 24 138 48 222 84 84-36 157-60 222-84" fill="none" stroke="#20dfff" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+<text x="512" y="955" text-anchor="middle" fill="#f4fcff" font-family="Arial,Helvetica,sans-serif" font-size="66" font-weight="700" letter-spacing="8">REGNVAKT</text>
+</svg>
